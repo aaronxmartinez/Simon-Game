@@ -2,7 +2,7 @@
 var buttonColors = ["red", "blue", "green", "yellow"];
 
 // adding game pattern array
-var gamePattern =[];
+var gamePattern = [];
 
 function nextSequence(){
     // creating random number generator
@@ -10,6 +10,7 @@ function nextSequence(){
 
     // choosing button colors depending on random number
     var randomChosenColor = buttonColors[randomNumber];
-    console.log(randomChosenColor);
-}
 
+    // adding the chosen random color into the gamePattern array
+    return gamePattern.push(randomChosenColor);
+}
