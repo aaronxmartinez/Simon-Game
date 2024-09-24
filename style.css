@@ -15,3 +15,10 @@ body {
     width: 50%;
     margin: auto;
 }
+
+.btn {
+    margin: 25px;
+    display: inline-block;
+    height: 200px;
+    width: 200px;
+}
