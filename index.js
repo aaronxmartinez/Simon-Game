@@ -4,6 +4,16 @@ var buttonColors = ["red", "blue", "green", "yellow"];
 // adding game pattern array
 var gamePattern = [];
 
+// adding a user clicked pattern array
+ var userClickedPattern = [];
+
+// detecting which buttons are clicked, getting the button clicked attributes, and adding to clicked pattern array
+$(".btn").click(function(){
+    var userChosenColor = $(this).attr("id");
+    userClickedPattern.push(userChosenColor);
+    console.log(userChosenColor);
+});
+
 function nextSequence(){
     // creating random number generator
     var randomNumber = Math.floor((Math.random() * 4));
