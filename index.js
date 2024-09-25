@@ -84,5 +84,6 @@ function checkAnswer(){
 }
 
 function restartButton(){
-    $(".container").html("<button>Press to Restrat!</button>").addClass("wrong-button");
+    $(".container").html("<button>Press to Restart!</button>");
+    $("button").addClass("button");
 }
