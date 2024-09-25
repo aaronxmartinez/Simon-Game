@@ -15,6 +15,9 @@ $(".btn").click(function(){
     animatePress(userChosenColor);
 });
 
+// detecting whenever a keyboard has been pressed
+$(document).one("keypress", nextSequence);
+
 function nextSequence(){
     // creating random number generator
     var randomNumber = Math.floor((Math.random() * 4));
