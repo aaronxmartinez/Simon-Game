@@ -16,7 +16,7 @@ var gamePattern = [];
 // detecting whenever a keyboard has been pressed
 $(document).keypress(function(){
     if (!started){
-        $("#level-title").text("Level" + level);
+        $("#level-title").text("Level " + level);
         nextSequence();
         started = true;
     }
@@ -28,13 +28,13 @@ $(".btn").click(function(){
     userClickedPattern.push(userChosenColor);
     playSound(userChosenColor);
     animatePress(userChosenColor);
-    checkAnswer(userClickedPattern.length - 1);
+    checkAnswer();
 });
 
 function nextSequence(){
     // increasing level every time function is called
     level++;
-
+    
     // updating level when function is called
     $("#level-title").text("Level " + level);
     
@@ -46,7 +46,7 @@ function nextSequence(){
     
     // adding the chosen random color into the gamePattern array
     gamePattern.push(randomChosenColor);
-
+    
     // selecting the random button color with the button id with animation
     $("#" + randomChosenColor).fadeIn(100).fadeOut(100).fadeIn(100);
     
@@ -64,18 +64,17 @@ function playSound(name){
 function animatePress(currentColor){
     // adding animation to whenever a button is pressed
     $("#" + currentColor).addClass("pressed");
-
+    
     // removing animation after 100 miliseconds
     setTimeout(function(){
         $("#" + currentColor).removeClass("pressed");
     }, 100);
 }
 
-function checkAnswer(currentLevel){
-    // checking answer against user's answer
-    if (currentLevel === (gamePattern.length-1)){
-        console.log("nice");
-    } else {
-        console.log("gay");
+function checkAnswer(){
+    if (gamePattern[gamePattern.length - 1] === userClickedPattern[userClickedPattern.length - 1]){
+        nextSequence();
     }
 }
+
+// if (userClickedPattern[userClickedPattern.length - 1] === gamePattern[gamePattern.length - 1])
