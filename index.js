@@ -28,6 +28,7 @@ $(".btn").click(function(){
     userClickedPattern.push(userChosenColor);
     playSound(userChosenColor);
     animatePress(userChosenColor);
+    checkAnswer(userClickedPattern.length - 1);
 });
 
 function nextSequence(){
@@ -68,4 +69,13 @@ function animatePress(currentColor){
     setTimeout(function(){
         $("#" + currentColor).removeClass("pressed");
     }, 100);
+}
+
+function checkAnswer(currentLevel){
+    // checking answer against user's answer
+    if (currentLevel === (gamePattern.length-1)){
+        console.log("nice");
+    } else {
+        console.log("gay");
+    }
 }
