@@ -72,10 +72,11 @@ function animatePress(currentColor){
 }
 
 function checkAnswer(){
-    if (gamePattern[gamePattern.length - 1] === userClickedPattern[userClickedPattern.length - 1]){
-        nextSequence();
-    } else {
-        $("#level-title").text("Wrong!");
+    if (gamePattern[gamePattern.length - 1] !== userClickedPattern[userClickedPattern.length - 1]){
+        $("#level-title").text("Wrong! Game Over at Level " + level + "!");
         $("body").css("backgroundColor", "red");
+        $(".btn").off("click");
+    } else {
+        nextSequence();
     }
 }
