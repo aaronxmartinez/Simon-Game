@@ -74,7 +74,8 @@ function animatePress(currentColor){
 function checkAnswer(){
     if (gamePattern[gamePattern.length - 1] === userClickedPattern[userClickedPattern.length - 1]){
         nextSequence();
+    } else {
+        $("#level-title").text("Wrong!");
+        $("body").css("backgroundColor", "red");
     }
 }
-
-// if (userClickedPattern[userClickedPattern.length - 1] === gamePattern[gamePattern.length - 1])
