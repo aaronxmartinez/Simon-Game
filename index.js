@@ -12,6 +12,7 @@ $(".btn").click(function(){
     var userChosenColor = $(this).attr("id");
     userClickedPattern.push(userChosenColor);
     playSound(userChosenColor);
+    animatePress(userChosenColor);
 });
 
 function nextSequence(){
@@ -36,4 +37,14 @@ function playSound(name){
     // playing sound when buttons are clicked
     var audio = new Audio("sounds/" + name + ".mp3");
     audio.play();
+}
+
+function animatePress(currentColor){
+    // adding animation to whenever a button is pressed
+    $("#" + currentColor).addClass("pressed");
+
+    // removing animation after 100 miliseconds
+    setTimeout(function(){
+        $("#" + currentColor).removeClass("pressed");
+    }, 100);
 }
