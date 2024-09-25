@@ -7,6 +7,21 @@ var gamePattern = [];
 // adding a user clicked pattern array
  var userClickedPattern = [];
 
+ // keeping track if game has started 
+ var started = false;
+ 
+ // starting level at 0
+ var level = 0;
+
+// detecting whenever a keyboard has been pressed
+$(document).keypress(function(){
+    if (!started){
+        $("#level-title").text("Level" + level);
+        nextSequence();
+        started = true;
+    }
+});
+
 // detecting which buttons are clicked, getting the button clicked attributes, and adding to clicked pattern array
 $(".btn").click(function(){
     var userChosenColor = $(this).attr("id");
@@ -15,16 +30,16 @@ $(".btn").click(function(){
     animatePress(userChosenColor);
 });
 
-// detecting whenever a keyboard has been pressed
-$(document).one("keypress", nextSequence);
-$(document).one("keypress", function(){
-    $("h1").text("Level 1");
-});
-
 function nextSequence(){
-    // creating random number generator
-    var randomNumber = Math.floor((Math.random() * 4));
+    // increasing level every time function is called
+    level++;
 
+    // updating level when function is called
+    $("#level-title").text("Level " + level);
+    
+    // creating random number generator
+    var randomNumber = Math.floor(Math.random() * 4);
+    
     // choosing button colors depending on random number
     var randomChosenColor = buttonColors[randomNumber];
     
@@ -33,7 +48,7 @@ function nextSequence(){
 
     // selecting the random button color with the button id with animation
     $("#" + randomChosenColor).fadeIn(100).fadeOut(100).fadeIn(100);
-
+    
     // playing matching button sound with matching button color
     var audio = new Audio("sounds/" + randomChosenColor + ".mp3");
     audio.play();
