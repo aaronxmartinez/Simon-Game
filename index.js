@@ -17,6 +17,9 @@ $(".btn").click(function(){
 
 // detecting whenever a keyboard has been pressed
 $(document).one("keypress", nextSequence);
+$(document).one("keypress", function(){
+    $("h1").text("Level 1");
+});
 
 function nextSequence(){
     // creating random number generator
