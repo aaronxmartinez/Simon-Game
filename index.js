@@ -84,6 +84,10 @@ function checkAnswer(){
 }
 
 function restartButton(){
+    // added function to add a button whenever the wrong button is pressed with the ability to reload page
     $(".container").html("<button>Press to Restart!</button>");
     $("button").addClass("button");
+    $("button").click(function(){
+        window.location.reload();
+    });
 }
