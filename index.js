@@ -82,7 +82,9 @@ function checkAnswer(){
         $(".btn").off("click");
         restartButton();
     } else {
-        nextSequence();
+        setTimeout(function(){
+            nextSequence();
+        }, 500);
     }
 }
 
