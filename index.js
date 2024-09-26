@@ -28,20 +28,27 @@ $(".btn").click(function(){
     userClickedPattern.push(userChosenColor);
     playSound(userChosenColor);
     animatePress(userChosenColor);
-    checkAnswer(userClickedPattern.length - 1);
+    checkAnswer();
 });
 
-function checkAnswer(currentLevel){
+function checkAnswer(){
     // checks answer if the last index of gamePattern and userClickedPattern and displays game over if wrong
-    if (gamePattern[currentLevel] !== userClickedPattern[currentLevel]){
-        $("#level-title").text("Wrong! Game Over at Level " + level + "!");
-        $("body").addClass("wrong");
-        setTimeout(function(){
-            $("body").removeClass("wrong");
-        }, 100);
-        $(".btn").off("click");
-        restartButton();
-    } else {
+    for (var i = 0; i < userClickedPattern.length; i++){
+        if (userClickedPattern[i] !== gamePattern[i]){
+            var audio = new Audio("sounds/wrong.mp3");
+            audio.play();
+            $("#level-title").text("Wrong! Game Over at Level " + level + "!");
+            $("body").addClass("wrong");
+            setTimeout(function(){
+                $("body").removeClass("wrong");
+            }, 150);
+            $(".btn").off("click");
+            restartButton();
+            return;
+        } 
+    }
+
+    if (userClickedPattern.length === gamePattern.length){
         setTimeout(function(){
             nextSequence();
         }, 1000);
