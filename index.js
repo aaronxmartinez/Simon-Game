@@ -28,10 +28,30 @@ $(".btn").click(function(){
     userClickedPattern.push(userChosenColor);
     playSound(userChosenColor);
     animatePress(userChosenColor);
-    checkAnswer();
+    checkAnswer(userClickedPattern.length - 1);
 });
 
+function checkAnswer(currentLevel){
+    // checks answer if the last index of gamePattern and userClickedPattern and displays game over if wrong
+    if (gamePattern[currentLevel] !== userClickedPattern[currentLevel]){
+        $("#level-title").text("Wrong! Game Over at Level " + level + "!");
+        $("body").addClass("wrong");
+        setTimeout(function(){
+            $("body").removeClass("wrong");
+        }, 100);
+        $(".btn").off("click");
+        restartButton();
+    } else {
+        setTimeout(function(){
+            nextSequence();
+        }, 1000);
+    }
+}
+
 function nextSequence(){
+    // restarting user pattern once this function is called
+    userClickedPattern = [];
+
     // increasing level every time function is called
     level++;
     
@@ -71,22 +91,6 @@ function animatePress(currentColor){
     }, 100);
 }
 
-function checkAnswer(){
-    // checks answer if the last index of gamePattern and userClickedPattern and displays game over if wrong
-    if (gamePattern[gamePattern.length - 1] !== userClickedPattern[userClickedPattern.length - 1]){
-        $("#level-title").text("Wrong! Game Over at Level " + level + "!");
-        $("body").addClass("wrong");
-        setTimeout(function(){
-            $("body").removeClass("wrong");
-        }, 100);
-        $(".btn").off("click");
-        restartButton();
-    } else {
-        setTimeout(function(){
-            nextSequence();
-        }, 500);
-    }
-}
 
 function restartButton(){
     // added function to add a button whenever the wrong button is pressed with the ability to reload page
